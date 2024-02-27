@@ -48,10 +48,10 @@ Student Attendance  List  | {{ $ins_name }}
 
 <div class="row">
 
-<div class="form-group col-md-3 col-sm-12">
-                                <label for="password">Class Name</label>
+<div class="form-group col-md-4 col-sm-12">
+                                <label for="password">Branch Name</label>
                     <select name="class_id"  class="form-control form-control-sm">
-                        <option value="">Select Class</option>
+                        <option value="">Select Branch</option>
        @foreach ($class_details as $user_class_update)
  <option value="{{ $user_class_update->id }}" >{{ $user_class_update->name }}</option>
 
@@ -60,28 +60,16 @@ Student Attendance  List  | {{ $ins_name }}
                             </div>
 
 
-<div class="form-group col-md-2 col-sm-12">
-                                <label for="password">Department Name</label>
-                    <select name="department_id"  class="form-control form-control-sm">
 
-                                </select>
-                            </div>
 
-                            <div class="form-group col-md-2 col-sm-12">
-                                <label for="password">Section Name</label>
-                    <select name="section_id"  class="form-control form-control-sm">
-
-                                </select>
-                            </div>
-
-                             <div class="form-group col-md-3 col-sm-12">
+                             <div class="form-group col-md-4 col-sm-12">
                                 <label for="password">Subject Name</label>
                     <select name="subject_id"  class="form-control form-control-sm">
 
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-2 col-sm-12">
+                            <div class="form-group col-md-4 col-sm-12">
                                 <label for="password">Date</label>
                                 <input type="date" id="date" name="date" value="<?php echo date('Y-m-d')?>" class="form-control form-control-sm"/>
                               </div>

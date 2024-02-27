@@ -39,11 +39,11 @@ Student Information | {{ $ins_name }}
 
                             <div class="row">
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Class</label>
+                                        <label>Branch</label>
                                         <select name="class_id" class="form-control form-control-sm" id="class_id">
-                                            <option value="">Select Class</option>
+                                            <option value="">Select Branch</option>
                                             @foreach ($class_details as $user_class_update)
                                             <option value="{{ $user_class_update->id }}">
                                                 {{ $user_class_update->name }}</option>
@@ -52,25 +52,7 @@ Student Information | {{ $ins_name }}
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
 
-                                        <label for="password">Department Name</label>
-                                        <select name="department_id" class="form-control form-control-sm" id="department_id">
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-
-                                        <label for="password">Section Name</label>
-                                        <select name="section_id"  class="form-control form-control-sm" id="section_id">
-
-                                                    </select>
-                                    </div>
-                                </div>
                                 <div class="col-sm-12 mt-3">
                                     <div class="form-group">
                                         <button type="submit" id="serach_by_pass_yearall" name="search"  value="search_filter"

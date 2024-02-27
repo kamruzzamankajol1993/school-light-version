@@ -17,12 +17,13 @@ use App\Result;
 use App\Exam;
 use App\Models\AssignStudentToFeeGroup;
 use App\Models\CollectFee;
+use App\StudentHouse;
 class CollectFeeController extends Controller
 {
     public function index(){
 
 
-        $class_details = Srani::latest()->get();
+        $class_details = StudentHouse::latest()->get();
         $dp_details = Department::latest()->get();
         $section_details = Section::latest()->get();
 
@@ -54,23 +55,23 @@ $exam_details = Exam::latest()->get();
     public function collect_fee_student_searchBy_class(Request $request){
 
 
-        $class_details = Srani::where('id',$request->class_id)->value('name');
+        $class_details = StudentHouse::where('id',$request->class_id)->value('name');
         $dp_details = Department::where('id',$request->department_id)->value('name');
         $section_details = Section::where('id',$request->section_id)->value('name');
 
         if($request->department_id == 0){
 
 
-            $student_list=MainStudent::where('class',$class_details)
-        ->where('section',$section_details)
+            $student_list=MainStudent::where('student_house',$class_details)
+        //->where('section',$section_details)
 
         ->get();
 
 
         }else{
-        $student_list=MainStudent::where('class',$class_details)
-        ->where('section',$section_details)
-        ->where('department',$dp_details)
+        $student_list=MainStudent::where('student_house',$class_details)
+        // ->where('section',$section_details)
+        // ->where('department',$dp_details)
 
         ->get();
         }
@@ -115,8 +116,8 @@ $exam_details = Exam::latest()->get();
     public function collect_fee_list($id){
 
         $student_list=MainStudent::where('id',$id)->first();
-        $class_name = MainStudent::where('id',$id)->value('class');
-        $class_id = Srani::where('name',$class_name)->value('id');
+        $class_name = MainStudent::where('id',$id)->value('student_house');
+        $class_id = StudentHouse::where('name',$class_name)->value('id');
 
 
         $fee_group_list = AssignStudentToFeeGroup::where('class_id',$class_id)->select('fee_group_id')->get();

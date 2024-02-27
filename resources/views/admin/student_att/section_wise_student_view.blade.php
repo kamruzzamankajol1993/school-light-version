@@ -6,7 +6,7 @@
     <table class="table table-bordered  table-hover">
         <thead>
           <tr>
-            <th scope="col">Roll Number</th>
+
             <th scope="col">Student Name</th>
             <th scope="col">Attendance</th>
             <th scope="col">Note</th>
@@ -15,14 +15,11 @@
         <tbody>
             @foreach($student_details as $key=>$new_details)
           <tr>
-            <td scope="row">
-                {{ $new_details->roll_number }}
-                <input type="hidden" name="student_id[]" value="{{ $new_details->id }}" class="form-control form-control-sm"/>
-                <input type="hidden" name="student_roll[]" value="{{ $new_details->roll_number }}" class="form-control form-control-sm" readonly/>
 
-            </td>
             <td>
                 {{ $new_details->first_name.' '.$new_details->last_name }}
+                <input type="hidden" name="student_id[]" value="{{ $new_details->id }}" class="form-control form-control-sm"/>
+                <input type="hidden" name="student_roll[]" value="{{ $new_details->roll_number }}" class="form-control form-control-sm" readonly/>
                 <input type="hidden" name="student_name[]" value="{{ $new_details->first_name.' '.$new_details->last_name }}" class="form-control form-control-sm" readonly/>
             </td>
             <td>
@@ -61,4 +58,14 @@
 
     </div>
 </div>
-
+<div class="col-lg-12 mt-3">
+    <div class="float-right d-none d-md-block">
+        <div class="form-group mb-4">
+            <div>
+                <button type="submit" class="btn btn-primary btn-lg  waves-effect  btn-sm waves-light mr-1">
+                   Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,13 +14,14 @@ use App\Subject;
 use App\Student;
 use App\Result;
 use App\Exam;
+use App\StudentHouse;
 use App\Models\AssignStudentToFeeGroup;
 class FeeAmountController extends Controller
 {
     public function index(){
 
 
-        $class_details = Srani::latest()->get();
+        $class_details = StudentHouse::latest()->get();
         $dp_details = Department::latest()->get();
         $section_details = Section::latest()->get();
 
@@ -135,5 +136,5 @@ $exam_details = Exam::latest()->get();
 
     }
 
-    
+
 }

@@ -27,7 +27,7 @@
     <table class="table table-bordered  table-hover">
         <thead>
           <tr>
-            <th scope="col">Roll Number</th>
+
             <th scope="col">Student Name</th>
             <th scope="col">Attendance</th>
             <th scope="col">Note</th>
@@ -36,14 +36,11 @@
         <tbody>
             @foreach($student_attandence_search as $key=>$new_details)
           <tr>
-            <td scope="row">
-                {{ $new_details->roll }}
-                <input type="hidden" name="student_id[]" value="{{ $new_details->student_id }}" class="form-control form-control-sm"/>
-                <input type="hidden" name="student_roll[]" value="{{ $new_details->roll }}" class="form-control form-control-sm" readonly/>
 
-            </td>
             <td>
                 {{ $new_details->student_name }}
+                <input type="hidden" name="student_id[]" value="{{ $new_details->student_id }}" class="form-control form-control-sm"/>
+                <input type="hidden" name="student_roll[]" value="{{ $new_details->roll }}" class="form-control form-control-sm" readonly/>
                 <input type="hidden" name="student_name[]" value="{{ $new_details->student_name }}" class="form-control form-control-sm" readonly/>
             </td>
             <td>

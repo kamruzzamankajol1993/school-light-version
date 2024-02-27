@@ -80,27 +80,17 @@ Student Fee List | {{ $ins_name }}
                                 <td>Mobile Number:</td>
                                 <td>{{ $student_list->mobile_number}}</td>
                             </tr>
-                            <tr>
-                                <td>Category:</td>
-                                <td>{{ $student_list->category }}</td>
-                            </tr>
+
 
                         </table>
                     </div>
                     <div class="col-md-5">
                         <table class="table table-striped table-hove">
                             <tr>
-                                <td>Class Section:</td>
-                                <td>{{ $student_list->class}}({{$student_list->section}})</td>
+                                <td>Branch:</td>
+                                <td>{{ $student_list->student_house}}</td>
                             </tr>
-                            <tr>
-                                <td>Admission No:</td>
-                                <td>{{ $student_list->admission_no }}</td>
-                            </tr>
-                            <tr>
-                                <td>Roll Number:</td>
-                                <td>{{ $student_list->roll_number}}</td>
-                            </tr>
+                          
 
 
                         </table>

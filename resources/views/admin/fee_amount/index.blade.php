@@ -259,10 +259,10 @@ Fee Amount List | {{ $ins_name }}
                                                         <div class="row">
 
 
-                                                            <div class="form-group col-md-6 col-sm-12">
-                                                                <label for="password">Class Name</label>
+                                                            <div class="form-group col-md-12 col-sm-12">
+                                                                <label for="password">Branch Name</label>
                                                     <select name="class_id"  class="form-control form-control-sm">
-                                                        <option value="">Select Class</option>
+                                                        <option value="">Select Branch</option>
                                        @foreach ($class_details as $user_class_update)
                                  <option value="{{ $user_class_update->id }}" >{{ $user_class_update->name }}</option>
 
@@ -271,12 +271,12 @@ Fee Amount List | {{ $ins_name }}
                                                             </div>
 
 
-                <div class="form-group col-md-6 col-sm-12">
+                {{-- <div class="form-group col-md-6 col-sm-12">
                                                                 <label for="password">Department Name</label>
                                                     <select name="department_id"  class="form-control form-control-sm">
 
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
 
 
 

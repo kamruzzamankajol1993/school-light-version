@@ -9,6 +9,7 @@ use App\Department;
 use App\Section;
 use App\Subject;
 use App\MainStudent;
+use App\StudentHouse;
 use App\Student;
 use App\Result;
 use App\InstituteInformation;
@@ -24,7 +25,7 @@ class StudentAttController extends Controller
     public function index(){
 
 
-        $class_details = Srani::latest()->get();
+        $class_details = StudentHouse::latest()->get();
         $dp_details = Department::latest()->get();
         $section_details = Section::latest()->get();
         $class_teacher_details = AssignClassToTeacher::latest()->get();
@@ -49,7 +50,7 @@ class StudentAttController extends Controller
    public function create(){
 
 
-    $class_details = Srani::latest()->get();
+    $class_details = StudentHouse::latest()->get();
     $dp_details = Department::latest()->get();
     $section_details = Section::latest()->get();
     $class_teacher_details = AssignClassToTeacher::latest()->get();
@@ -71,16 +72,16 @@ class StudentAttController extends Controller
 }
 
 public function section_wise_student_view(Request $request){
-    
-    
-        $class_details = Srani::where('id',$request->class_id)->value('name');
+
+
+        $class_details = StudentHouse::where('id',$request->class_id)->value('name');
         $dp_details = Department::where('id',$request->department_id)->value('name');
         $section_details = Section::where('id',$request->section_id)->value('name');
 
 
-$student_details = MainStudent::where('class',$class_details)
-->where('section',$section_details)
-->where('department',$request->department_id)
+$student_details = MainStudent::where('student_house',$class_details)
+// ->where('section',$section_details)
+// ->where('department',$request->department_id)
 ->get();
 
 
@@ -97,7 +98,7 @@ public function store(Request $request){
 
 
     $all_input_date = $request->all();
-    
+
     //dd($all_input_date);
 
     $note_data = array_filter($all_input_date['note']);

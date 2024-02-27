@@ -8,12 +8,10 @@
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Admission No</th>
+
                             <th>Student Name</th>
-                            <th>Class</th>
-                            <th>Section</th>
-                            <th>Gender</th>
-                            <th>Current Email</th>
+                            <th>Branch</th>
+
                             <th>Current Phone</th>
                             <th>Action</th>
                         </tr>
@@ -22,12 +20,10 @@
 @foreach($student_list as $all_search_list)
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
-                            <td>{{ $all_search_list->admission_no }}</td>
+
                             <td>{{ $all_search_list->first_name.''.$all_search_list->last_name }}</td>
-                            <td>{{ $all_search_list->class }}</td>
-                            <td>{{ $all_search_list->section }}</td>
-                            <td>{{ $all_search_list->gender }}</td>
-                            <td>{{ $all_search_list->email }}</td>
+                            <td>{{ $all_search_list->student_house }}</td>
+
                             <td>{{ $all_search_list->mobile_number }}</td>
                             <td>@if (Auth::guard('admin')->user()->can('student_view'))
 
