@@ -53,8 +53,8 @@ Subject List | {{ $ins_name }}
                                         <thead>
                                             <tr>
                                                <th>SL</th>
-                                    <th>Class Name</th>
-                                    <th>Department Name</th>
+                                    <th>Branch Name</th>
+
                                     <th>Subject Name</th>
                                     <th>Status</th>
 
@@ -90,18 +90,7 @@ Subject List | {{ $ins_name }}
 
                                 </td>
 
-                                 <td>
-                                    @foreach ($dp_details as $dp_class)
 
-                                    @if($user->department_id == $dp_class->id)
-
-
-                                    {{ $dp_class->name }}
-
-                                        @endif
-                                    @endforeach
-
-                                </td>
 
                                     <td>
 
@@ -143,7 +132,7 @@ Subject List | {{ $ins_name }}
 
                                                         @csrf
                                                          <div class="form-group col-md-12 col-sm-12">
-                                                                <label for="password">Class Name</label>
+                                                                <label for="password">Branch Name</label>
                                                     <select name="class_id"  class="form-control form-control-sm">
                                        @foreach ($class_details as $user_class_update)
                                  <option value="{{ $user_class_update->id }}" {{ $user->class_id == $user_class_update->id  ? 'selected' : '' }}>{{ $user_class_update->name }}</option>
@@ -151,7 +140,7 @@ Subject List | {{ $ins_name }}
                                         @endforeach
                                                                 </select>
                                                             </div>
-                                                             <div class="form-group col-md-12 col-sm-12">
+                                                             {{-- <div class="form-group col-md-12 col-sm-12">
                                                                 <label for="password">Department Name</label>
                                                     <select name="department_id"  class="form-control form-control-sm">
                                                                @foreach ($dp_details as $user_class_update)
@@ -159,7 +148,7 @@ Subject List | {{ $ins_name }}
 
                                         @endforeach
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
                                                         <div class="row">
                                                             <div class="form-group col-md-6 col-sm-12">
                                                                 <label for="name">Name</label>
@@ -240,7 +229,7 @@ Subject List | {{ $ins_name }}
                                             <div class="card-body">
 
 <div class="form-group col-md-12 col-sm-12">
-                                                                <label for="password">Class Name</label>
+                                                                <label for="password">Branch Name</label>
                                                     <select name="class_id"  class="form-control form-control-sm">
                                                         <option value="">Select Class</option>
                                        @foreach ($class_details as $user_class_update)
@@ -251,12 +240,12 @@ Subject List | {{ $ins_name }}
                                                             </div>
 
 
-                <div class="form-group col-md-12 col-sm-12">
+                {{-- <div class="form-group col-md-12 col-sm-12">
                                                                 <label for="password">Department Name</label>
                                                     <select name="department_id"  class="form-control form-control-sm">
 
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
                                                 <div class="row">
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="name">Name</label>

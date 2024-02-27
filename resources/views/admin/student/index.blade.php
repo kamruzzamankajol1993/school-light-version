@@ -300,13 +300,13 @@ Student List | {{ $ins_name }}
                             <tr>
                                 <th>SL</th>
 
-                                <th>{{ $first_value }}</th>
+                                <th>full_name</th>
 
                                 <th>{{ $second_value }}</th>
 
                                 <th>{{ $third_value }}</th>
 
-                                <th>{{ $fourth_value }}</th>
+                                <th>student_branch</th>
 
 
 
@@ -354,6 +354,20 @@ Student List | {{ $ins_name }}
 
 
                                 <td>
+                                    @if (Auth::guard('admin')->user()->can('student_view'))
+
+                                    <a type="button" href="{{ route('admin.student.view',$newss->id) }}"
+                                        class="btn btn-success waves-light waves-effect  btn-sm" >
+                                        <i class="fas fa-eye"></i></a>
+
+                                    @endif
+                                    @if (Auth::guard('admin')->user()->can('student_update'))
+
+                                    <a type="button" href="{{ route('admin.student.edit',$newss->id) }}"
+                                        class="btn btn-primary waves-light waves-effect  btn-sm" >
+                                        <i class="fas fa-pencil-alt"></i></a>
+
+                                    @endif
                                     @if (Auth::guard('admin')->user()->can('student_delete'))
 
                                     <button   type="button" class="btn btn-danger waves-light waves-effect  btn-sm" onclick="deleteTag({{ $newss->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>

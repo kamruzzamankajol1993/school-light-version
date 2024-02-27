@@ -46,8 +46,8 @@ $admissionId = date('Ymd').$main_time;
                 <div class="card-body">
                     <form method="post" action="{{ route('admin.student.store') }}"  enctype="multipart/form-data">
                         @csrf
-                        <section class="bg-gradient-info text-light">
-                            <h5 style="padding: 10px;">General Information</h5>
+                        <section class="bg-primary text-light">
+                            <h5 style="padding: 10px;color:white">General Information</h5>
                                                 </section>
                         <div class="row mt-2">
 
@@ -61,58 +61,19 @@ $admissionId = date('Ymd').$main_time;
                                     @elseif($new_custome_field->field_type == 'select')
                                    <!--fix field item -->
                                     @if($new_custome_field->field_name == 'Category')
-                                    <div class="col-md-4 ">
-                                        <div class=" mb-3">
-                                    <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
-                                     <select name="{{ $new_custome_field->database_colomn_name }}" class="form-control 1 select2" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-
-                                        @foreach($student_category as $newCategory)
-
-                                        <option value="{{ $newCategory->name }}">{{ $newCategory->name }}</option>
-
-                                        @endforeach
-                                     </select>
-                                    </div>
-                                </div>
                                     @elseif($new_custome_field->field_name == 'Class')
-                                    <div class="col-md-4 ">
-                                        <div class=" mb-3">
-                                    <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
-                                    <select name="class_id"  class="form-control 1 select2" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-                                        <option value="">Select Class</option>
-                       @foreach ($class_details as $user_class_update)
-                 <option value="{{ $user_class_update->name }}" >{{ $user_class_update->name }}</option>
+                                    @elseif ($new_custome_field->field_name == 'Blood Group' )
 
-                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                                    @elseif($new_custome_field->field_name == 'Gender')
+
                         @elseif($new_custome_field->field_name == 'Department')
-                        <div class="col-md-4 ">
-                            <div class=" mb-3">
-                        <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
-                        <select name="department_id"  class="form-control" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-
-                        </select>
-
-                    </div>
-                </div>
                                     @elseif($new_custome_field->field_name == 'Section')
-                                    <div class="col-md-4 ">
-                                        <div class=" mb-3">
-                                    <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
-                                    <select name="section_id"  class="form-control" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-
-                                    </select>
-
-                                        </div>
-                                    </div>
                                     @elseif($new_custome_field->field_name == 'Student House')
-                                    <div class="col-md-4 ">
+                                    <div class="col-md-6 ">
                                         <div class=" mb-3">
                                     <label class="form-label" for="">Student Branch<span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
@@ -127,7 +88,7 @@ $admissionId = date('Ymd').$main_time;
                                     </div>
                                 </div>
                                     @else
-                                    <div class="col-md-4 ">
+                                    <div class="col-md-6 ">
                                         <div class=" mb-3">
                                     <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
@@ -164,21 +125,28 @@ $admissionId = date('Ymd').$main_time;
                                     @if($new_custome_field->field_name == 'Roll Number' || $new_custome_field->field_name == 'Religion' || $new_custome_field->field_name == 'Caste' || $new_custome_field->field_name == 'Admission Date' || $new_custome_field->field_name == 'Height' || $new_custome_field->field_name == 'Weight' || $new_custome_field->field_name == 'As on Date' || $new_custome_field->field_name == 'Blood Group' || $new_custome_field->field_name == 'Email')
 
 
+                                    @elseif ($new_custome_field->field_name == 'Student Photo' )
+
+                                    @elseif ($new_custome_field->field_name == 'Last Name' )
+
+                                    @elseif ($new_custome_field->field_name == 'First Name' )
+                                    <div class="col-md-6">
+                                        <div class=" mb-3">
+                                                                        <label class="form-label" for="">Full Name <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
+
+                                                                        @if($new_custome_field->field_type == 'date')
+                                                                        <input type="{{ $new_custome_field->field_type }}" name="{{ $new_custome_field->database_colomn_name }}" value="<?php  echo date('Y-m-d')?>" class="form-control 1" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
+                                                                        @else
+                                                                        <input type="{{ $new_custome_field->field_type }}" name="{{ $new_custome_field->database_colomn_name }}"  class="form-control 1" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+
 @elseif ($new_custome_field->field_name == 'Admission No' )
 
-<div class="col-md-4 ">
-    <div class=" mb-3">
-                                    <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
-                                    @if($new_custome_field->field_type == 'date')
-                                    <input type="{{ $new_custome_field->field_type }}" name="{{ $new_custome_field->database_colomn_name }}" value="<?php  echo date('Y-m-d')?>" class="form-control 1" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-                                    @else
-                                    <input type="{{ $new_custome_field->field_type }}" name="{{ $new_custome_field->database_colomn_name }}" readonly value="{{ $admissionId }}" class="form-control 1" {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-                                    @endif
-                                </div>
-                            </div>
 @else
-<div class="col-md-4 ">
+<div class="col-md-6 ">
     <div class=" mb-3">
                                     <label class="form-label" for="">{{ $new_custome_field->field_name }} <span class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
 
@@ -196,8 +164,8 @@ $admissionId = date('Ymd').$main_time;
                         </div>
 
 
-                        <section class="bg-gradient-info text-light">
-                            <h5 style="padding: 10px;">Parent Guardian Detail</h5>
+                        <section class="bg-primary text-light">
+                            <h5 style="padding: 10px;color:white">Parent Guardian Detail</h5>
                                                 </section>
 
                                                   <div class="row mt-2">

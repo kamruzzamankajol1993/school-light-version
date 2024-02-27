@@ -36,8 +36,8 @@ Update Student
                 <form method="post" action="{{ route('admin.student.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{ $single_student_info->id }}" />
-                    <section class="bg-gradient-info text-light">
-                        <h5 style="padding: 10px;">General Information</h5>
+                    <section class="bg-primary text-light">
+                        <h5 style="padding: 10px;color:white">General Information</h5>
                     </section>
                     <div class="row mt-2">
 
@@ -55,87 +55,21 @@ Update Student
                                 <!--fix field item -->
                                 @if($new_custome_field->field_name == 'Category')
 
-                                <div class="col-md-4 ">
-                                    <div class=" mb-3">
 
-
-                                <label class="form-label" for="">{{ $new_custome_field->field_name }} <span
-                                    class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
-                                <select name="{{ $new_custome_field->database_colomn_name }}" class="form-control"
-                                    {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-
-                                    @foreach($student_category as $newCategory)
-
-                                    <option value="{{ $newCategory->name }}"
-                                        {{ $single_student_info->$select_type_field_name == $newCategory->name ? 'selected':''  }}>
-                                        {{ $newCategory->name }}</option>
-
-                                    @endforeach
-                                </select>
-
-                                    </div>
-                                </div>
 
                                 @elseif($new_custome_field->field_name == 'Class')
 
-                                <div class="col-md-4 ">
-                                    <div class=" mb-3">
 
-                                <label class="form-label" for="">{{ $new_custome_field->field_name }} <span
-                                    class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
-
-                                <select name="class_id" class="form-control"
-                                    {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-                                    <option value="">Select Class</option>
-                                    @foreach ($class_details as $user_class_update)
-                                    <option value="{{ $user_class_update->name }}"
-                                        {{  $single_student_info->$select_type_field_name == $user_class_update->name ? 'selected':''   }}>
-                                        {{ $user_class_update->name }}</option>
-
-                                    @endforeach
-                                </select>
-                                    </div>
-                                </div>
                                 @elseif($new_custome_field->field_name == 'Department')
 
-                                <div class="col-md-4 ">
-                                    <div class=" mb-3">
+                                @elseif ($new_custome_field->field_name == 'Blood Group' )
 
-                                <label class="form-label" for="">{{ $new_custome_field->field_name }} <span
-                                    class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
-                                <select name="department_id" class="form-control"
-                                    {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-                                    <option readonly value="0">--- Select Department ---</option>
-                                    @foreach ($dp_details as $user_class_update)
-                                    <option value="{{ $user_class_update->name }}"
-                                        {{ $single_student_info->$select_type_field_name == $user_class_update->name  ? 'selected' : '' }}>
-                                        {{ $user_class_update->name }}</option>
-
-                                    @endforeach
-                                </select>
-
-                                    </div>
-                                </div>
+                                @elseif($new_custome_field->field_name == 'Gender')
                                 @elseif($new_custome_field->field_name == 'Section')
-                                <div class="col-md-4 ">
-                                    <div class=" mb-3">
-                                <label class="form-label" for="">{{ $new_custome_field->field_name }} <span
-                                    class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
-                                <select name="section_id" class="form-control"
-                                    {{ $new_custome_field->validation == 1 ? 'required' : '' }}>
-                                    @foreach ($section_details as $user_class_update)
-                                    <option value="{{ $user_class_update->name }}"
-                                        {{ $single_student_info->$select_type_field_name == $user_class_update->name  ? 'selected' : '' }}>
-                                        {{ $user_class_update->name }}</option>
 
-                                    @endforeach
-                                </select>
-
-                                    </div>
-                                </div>
                                 @elseif($new_custome_field->field_name == 'Student House')
 
-                                <div class="col-md-4 ">
+                                <div class="col-md-6 ">
                                     <div class=" mb-3">
                                 <label class="form-label" for="">Student Branch<span
                                     class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
@@ -164,7 +98,7 @@ Update Student
                                      //var_dump($array_value);
                                     ?>
 
-<div class="col-md-4 ">
+<div class="col-md-6">
     <div class=" mb-3">
                                 <label class="form-label" for="">{{ $new_custome_field->field_name }} <span
                                     class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
@@ -190,9 +124,15 @@ Update Student
 
                                 @if($new_custome_field->field_name == 'Roll Number' || $new_custome_field->field_name == 'Religion' || $new_custome_field->field_name == 'Caste' || $new_custome_field->field_name == 'Admission Date' || $new_custome_field->field_name == 'Height' || $new_custome_field->field_name == 'Weight' || $new_custome_field->field_name == 'As on Date' || $new_custome_field->field_name == 'Blood Group' || $new_custome_field->field_name == 'Email')
 
+                                @elseif ($new_custome_field->field_name == 'Student Photo' )
+
+                                @elseif ($new_custome_field->field_name == 'Last Name' )
+
+                                @elseif ($new_custome_field->field_name == 'Admission No' )
+
                                 @else
 
-                                <div class="col-md-4 ">
+                                <div class="col-md-6">
                                     <div class=" mb-3">
                                 <label class="form-label" for="">{{ $new_custome_field->field_name }} <span
                                     class="ml-3 text-danger">{{ $new_custome_field->validation == 1 ? '*' : '' }}</span></label>
@@ -236,8 +176,8 @@ Update Student
                     </div>
 
 
-                    <section class="bg-gradient-info text-light">
-                        <h5 style="padding: 10px;">Parent Guardian Detail</h5>
+                    <section class="bg-primary text-light">
+                        <h5 style="padding: 10px;color:white">Parent Guardian Detail</h5>
                     </section>
 
                     <div class="row mt-2">

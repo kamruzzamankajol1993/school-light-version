@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Srani;
+use App\StudentHouse;
 use App\Department;
 use App\Section;
 use App\Subject;
@@ -12,7 +12,7 @@ class SubjectController extends Controller
      public function index(){
 
 
-        $class_details = Srani::latest()->get();
+        $class_details = StudentHouse::latest()->get();
         $dp_details = Department::latest()->get();
  $section_details = Subject::latest()->get();
         return view('admin.subject.index',['class_details'=>$class_details,'dp_details'=>$dp_details,'section_details'=>$section_details]);
@@ -28,7 +28,7 @@ class SubjectController extends Controller
         // Validation Data
         $request->validate([
             'name' => 'required|max:50',
-            
+
         ]);
 
         // Create New User
@@ -58,7 +58,7 @@ class SubjectController extends Controller
 
         return redirect()->route('admin.subject')->with('success','Updated successfully!');
 
-        
+
     }
 
 
@@ -75,5 +75,5 @@ class SubjectController extends Controller
 
 
 
-     
+
 }

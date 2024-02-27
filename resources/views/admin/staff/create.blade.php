@@ -46,8 +46,8 @@ Add New Staff
                 <div class="card-body">
                     <form method="post" action="{{ route('admin.staff.store') }}"  enctype="multipart/form-data">
                         @csrf
-                        <section class="bg-gradient-info text-light">
-                            <h5 style="padding: 10px;">Basic Information</h5>
+                        <section class="bg-primary text-light">
+                            <h5 style="padding: 10px;color:white;">Basic Information</h5>
                                                 </section>
                         <div class="row mt-2">
 

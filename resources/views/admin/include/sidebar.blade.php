@@ -48,69 +48,64 @@
                     </a>
                 </li>
 @endif
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="uil-book-reader"></i>
-                        <span>Student Information</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        @if ($usr->can('student_create'))
-                        <li class="{{ Route::is('admin.student.create') ? 'active' : '' }}">
+@if ($usr->can('student_create'))
+<li class="{{ Route::is('admin.student.create') ? 'active' : '' }}">
 
 
 
-                            <a href="{{ route('admin.student.create') }}">Student Admission</a>
+    <a href="{{ route('admin.student.create') }}"><i class="uil-users-alt"></i>Student Admission</a>
 
 
-                        </li>
-                        @endif
-                        @if ($usr->can('student_create') || $usr->can('student_view') || $usr->can('student_store') ||  $usr->can('student_update') ||  $usr->can('student_delete'))
-                        <li class="{{ Route::is('admin.student') ? 'active' : '' }}">
-                            <a href="{{ route('admin.student') }}">Student Details</a>
+</li>
+@endif
+@if ($usr->can('student_create') || $usr->can('student_view') || $usr->can('student_store') ||  $usr->can('student_update') ||  $usr->can('student_delete'))
+<li class="{{ Route::is('admin.student') ? 'active' : '' }}">
+    <a href="{{ route('admin.student') }}"><i class="uil-file-check"></i>Student Details</a>
 
-                        </li>
-                        @endif
+</li>
+@endif
+@if ($usr->can('student_house_add') || $usr->can('student_view') ||   $usr->can('student_update') ||  $usr->can('student_delete'))
+<li class="{{ Route::is('admin.student_house') ? 'active' : '' }}">
+    <a href="{{ route('admin.student_house') }}"><i class="uil-file-network"></i>Branch</a>
 
-                        @if ($usr->can('student_category_add') || $usr->can('student_category_view') || $usr->can('student_category_update') ||  $usr->can('student_category_delete'))
-                        <li class="{{ Route::is('admin.student_category') ? 'active' : '' }}">
-                            <a href="{{ route('admin.student_category') }}">Student Categories</a>
-
-                        </li>
-                        @endif
-
-
-                        @if ($usr->can('student_house_add') || $usr->can('student_view') ||   $usr->can('student_update') ||  $usr->can('student_delete'))
-                        <li class="{{ Route::is('admin.student_house') ? 'active' : '' }}">
-                            <a href="{{ route('admin.student_house') }}">Branch</a>
-
-                        </li>
-                        @endif
+</li>
+@endif
 
 
-                        @if ($usr->can('disable_reason_add') || $usr->can('disable_reason_view') || $usr->can('disable_reason_update') ||  $usr->can('disable_reason_delete'))
-                        <li class="{{ Route::is('admin.student_disable_reason') ? 'active' : '' }}">
-                            <a href="{{ route('admin.student_disable_reason') }}">Disable Reason</a>
+@if ($usr->can('disable_reason_add') || $usr->can('disable_reason_view') || $usr->can('disable_reason_update') ||  $usr->can('disable_reason_delete'))
+<li class="{{ Route::is('admin.student_disable_reason') ? 'active' : '' }}">
+    <a href="{{ route('admin.student_disable_reason') }}"><i class="uil-file-plus"></i>Disable Reason</a>
 
-                        </li>
-                        @endif
+</li>
+@endif
 
-                        @if ($usr->can('student_disable.view') || $usr->can('student_disable.update'))
-                        <li class="{{ Route::is('student_disable_list') ? 'active' : '' }}">
-                            <a href="{{ route('student_disable_list') }}">Disable Student</a>
+@if ($usr->can('student_disable.view') || $usr->can('student_disable.update'))
+<li class="{{ Route::is('student_disable_list') ? 'active' : '' }}">
+    <a href="{{ route('student_disable_list') }}"><i class="uil-file-slash"></i>Disable Student</a>
 
-                        </li>
-                        @endif
+</li>
+@endif
 
-                        @if ($usr->can('student_bulk_delete.view') || $usr->can('student_bulk_delete.update'))
-                        <li class="{{ Route::is('student_bulk_delete_list') ? 'active' : '' }}">
-                            <a href="{{ route('student_bulk_delete_list') }}">Bulk Delete</a>
+@if ($usr->can('student_bulk_delete.view') || $usr->can('student_bulk_delete.update'))
+<li class="{{ Route::is('student_bulk_delete_list') ? 'active' : '' }}">
+    <a href="{{ route('student_bulk_delete_list') }}"><i class="uil-folder-slash"></i>Bulk Delete</a>
 
-                        </li>
-                        @endif
-                    </ul>
-                </li>
+</li>
+@endif
+
+@if ($usr->can('subject_create') || $usr->can('subject_store') ||  $usr->can('subject_update') ||  $usr->can('subject_delete'))
+<li class="{{ Route::is('admin.subject') ? 'active' : '' }}">
+    <a href="{{ route('admin.subject') }}"><span><i class="uil-book-open"></i>Subject</span> </a>
+</li>
+
+@endif
+
+@if ($usr->can('sta_add') || $usr->can('sta_view') || $usr->can('sta_update') ||  $usr->can('sta_delete'))
+<li class="{{ Route::is('admin.attendance_student') ? 'active' : '' }}">
+    <a href="{{ route('admin.attendance_student') }}"><i class="uil-file-bookmark-alt"></i>Student Attendance</a>
+</li>
+@endif
+
                 <li>
 
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -171,169 +166,6 @@
                 </li>
 
 
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="uil-calender"></i>
-                        <span>Attendance </span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        @if ($usr->can('sta_add') || $usr->can('sta_view') || $usr->can('sta_update') ||  $usr->can('sta_delete'))
-        <li class="{{ Route::is('admin.attendance_student') ? 'active' : '' }}">
-            <a href="{{ route('admin.attendance_student') }}">Student Attendance</a>
-        </li>
-    @endif
-                    </ul>
-                </li>
-
-
-
-                @if ($usr->can('academic_view'))
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="uil-graduation-cap"></i>
-                        <span>Academic </span>
-                    </a>
-
-                    <ul class="sub-menu" aria-expanded="false">
-                        @if ($usr->can('class_create') || $usr->can('class_store') ||  $usr->can('class_update') ||  $usr->can('class_delete'))
-                        <li class="{{ Route::is('admin.institute_class') ? 'active' : '' }}">
-                            <a href="{{ route('admin.institute_class') }}"><span>Class</span> </a>
-                        </li>
-
-                   @endif
-
-                   @if ($usr->can('dp_create') || $usr->can('dp_store') ||  $usr->can('dp_update') ||  $usr->can('dp_delete'))
-                   <li class="{{ Route::is('admin.department') ? 'active' : '' }}">
-                       <a href="{{ route('admin.department') }}"><span>Department</span> </a>
-                   </li>
-
-                @endif
-
-
-                @if ($usr->can('section_create') || $usr->can('section_store') ||  $usr->can('section_update') ||  $usr->can('section_delete'))
-                   <li class="{{ Route::is('admin.section') ? 'active' : '' }}">
-                       <a href="{{ route('admin.section') }}"><span>Section</span> </a>
-                   </li>
-
-                @endif
-
-                @if ($usr->can('subject_create') || $usr->can('subject_store') ||  $usr->can('subject_update') ||  $usr->can('subject_delete'))
-                   <li class="{{ Route::is('admin.subject') ? 'active' : '' }}">
-                       <a href="{{ route('admin.subject') }}"><span>Subject</span> </a>
-                   </li>
-
-                @endif
-
-                @if ($usr->can('ct_view') || $usr->can('ct_add') ||  $usr->can('ct_update') ||  $usr->can('ct_delete'))
-                   <li class="{{ Route::is('admin.class_teacher') ? 'active' : '' }}">
-                       <a href="{{ route('admin.class_teacher') }}"><span>Class Teacher</span> </a>
-                   </li>
-
-                @endif
-
-
-
-                @if ($usr->can('clr_view') || $usr->can('clr_add') ||  $usr->can('clr_update') ||  $usr->can('clr_delete'))
-                   <li class="{{ Route::is('admin.class_routine') ? 'active' : '' }}">
-                       <a href="{{ route('admin.class_routine') }}"><span>Class Routine</span> </a>
-                   </li>
-
-                @endif
-
-
-
-                    </ul>
-                </li>
-@endif
-
-
-
-
-
-       <li>
-
-        <a href="javascript: void(0);" class="has-arrow waves-effect">
-            <i class="uil-sitemap"></i>
-            <span>Human Resource</span>
-        </a>
-
-    <ul class="sub-menu" aria-expanded="false">
-
-        @if ($usr->can('Staff_directory_add') || $usr->can('Staff_directory_view') ||  $usr->can('Staff_directory_update') ||  $usr->can('Staff_directory_delete'))
-        <li class="{{ Route::is('admin.staff') ? 'active' : '' }}">
-            <a href="{{ route('admin.staff') }}"><span>Staff Directory</span> </a>
-        </li>
-
-     @endif
-
-
-     @if ($usr->can('Staff_attendence_add') || $usr->can('Staff_attendence_view') ||  $usr->can('Staff_attendence_update') ||  $usr->can('Staff_attendence_delete'))
-     <li class="{{ Route::is('admin.staff_attandance') ? 'active' : '' }}">
-         <a href="{{ route('admin.staff_attandance') }}"><span>Staff Attendence</span> </a>
-     </li>
-
-  @endif
-
-
-
-
-@if ($usr->can('Approve_leave_request_add') || $usr->can('Approve_leave_request_view') ||  $usr->can('Approve_leave_request_update') ||  $usr->can('Approve_leave_request_delete'))
-<li class="{{ Route::is('admin.apporoved_leave_request') ? 'active' : '' }}">
-    <a href="{{ route('admin.apporoved_leave_request') }}"><span>Approve Leave Request</span> </a>
-</li>
-
-@endif
-
-
-@if ($usr->can('apply_leave_add') || $usr->can('apply_leave_view') ||  $usr->can('apply_leave_update') ||  $usr->can('apply_leave_delete'))
-<li class="{{ Route::is('admin.apply_leave') ? 'active' : '' }}">
-    <a href="{{ route('admin.apply_leave') }}"><span>Apply Leave </span> </a>
-</li>
-
-@endif
-
-
-@if ($usr->can('Leave_type_add') || $usr->can('Leave_type_view') ||  $usr->can('Leave_type_update') ||  $usr->can('Leave_type_delete'))
-  <li class="{{ Route::is('admin.leave_type') ? 'active' : '' }}">
-      <a href="{{ route('admin.leave_type') }}"><span>Leave type</span> </a>
-  </li>
-
-@endif
-
-
-
-@if ($usr->can('hr_department_add') || $usr->can('hr_department_view') ||  $usr->can('hr_department_update') ||  $usr->can('hr_department_delete'))
-<li class="{{ Route::is('admin.staff_department') ? 'active' : '' }}">
-    <a href="{{ route('admin.staff_department') }}"><span>Department</span> </a>
-</li>
-
-@endif
-@if ($usr->can('designation_add') || $usr->can('designation_view') ||  $usr->can('designation_update') ||  $usr->can('designation_delete'))
-  <li class="{{ Route::is('admin.staff_designation') ? 'active' : '' }}">
-      <a href="{{ route('admin.staff_designation') }}"><span>Designation</span> </a>
-  </li>
-
-@endif
-
-
-@if ($usr->can('disable_staff_add') || $usr->can('disable_staff_view') ||  $usr->can('disable_staff_update') ||  $usr->can('disable_staff_delete'))
-  <li class="{{ Route::is('dis_able_staff') ? 'active' : '' }}">
-      <a href="{{ route('dis_able_staff') }}"><span>Disabled Staff </span> </a>
-  </li>
-
-@endif
-
-
-
-
-
-    </ul>
-    </li>
-
-
     <li>
 
         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -354,11 +186,6 @@
 
     </ul>
     </li>
-
-
-
-
-
 
 
     <li>

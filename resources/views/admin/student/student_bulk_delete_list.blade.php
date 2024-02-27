@@ -57,20 +57,10 @@ Student Bulk  Delete List | {{ $ins_name }}
                                 <th><input type="checkbox" id="master"></th>
                                 <th>SL</th>
 
-                                <th>Admission Name</th>
 
-                                <th>Roll Number</th>
-
-                                <th>Class</th>
-
-                                <th>Department</th>
-
-                                <th>Section</th>
 
                                 <th>Name</th>
 
-
-                                <th>Gender</th>
                                 <th>Date Of Birth</th>
                                 <th>Student House</th>
 
@@ -96,29 +86,12 @@ Student Bulk  Delete List | {{ $ins_name }}
 
 
                                 </td>
-                                <td>
 
-
-
-
-                                    {{ $newss->admission_no }}
-
-
-
-                                </td>
-
-                                <td>{{ $newss->roll_number}}</td>
-
-                                <td>{{ $newss->class}}</td>
-
-                                <td>{{ $newss->department}}</td>
-
-                                <td>{{ $newss->section}}</td>
 
                                 <td>{{ $newss->first_name.' '.$newss->last_name  }}</td>
 
 
-                                <td>{{ $newss->gender }}</td>
+
                                 <td>{{ $newss->date_of_birth }}</td>
                                 <td>{{ $newss->student_house}}</td>
 
