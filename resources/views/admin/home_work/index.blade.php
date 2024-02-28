@@ -54,11 +54,9 @@ HW/CW Information | {{ $ins_name }}
                             <tr>
                                 <th>SL</th>
                                 <th>Type</th>
-                                <th>Class</th>
-                                <th>Department</th>
-                                <th>Section</th>
+                                <th>Branch Name</th>
                                 <th>Subject</th>
-                                <th>Homework Date</th>
+                                <th>HW/CW Date</th>
                                 <th>Submission Date</th>
                                 <th>Evaluation Date</th>
                                 <th>Created By</th>
@@ -77,17 +75,10 @@ HW/CW Information | {{ $ins_name }}
                                 {{ $all_home_work->status }}
                             </td>
                             <td>
-                                <?php $class_name = DB::table('sranis')->where('id',$all_home_work->class)->value('name'); ?>
+                                <?php $class_name = DB::table('student_houses')->where('id',$all_home_work->class)->value('name'); ?>
                                 {{ $class_name }}
                             </td>
-                            <td>
-                                <?php $dep_name = DB::table('departments')->where('id',$all_home_work->department)->value('name'); ?>
-                                {{ $dep_name }}
-                            </td>
-                            <td>
-                                <?php $section_name = DB::table('sections')->where('id',$all_home_work->section)->value('name'); ?>
-                                {{ $section_name }}
-                            </td>
+
 
                             <td>
                                 <?php $subject_name = DB::table('subjects')->where('id',$all_home_work->subject)->value('name'); ?>
@@ -114,7 +105,8 @@ HW/CW Information | {{ $ins_name }}
                                 {{ $all_home_work->created_by }}
                             </td>
                             <td>
-                                @if (Auth::guard('admin')->user()->can('home_work_update'))
+
+                                @if (Auth::guard('admin')->user()->can('home_work_view'))
 
                                 <button type="button" data-bs-toggle="modal"
                                 data-bs-target=".bs-example-modal-lg44t{{ $all_home_work->id }}"
@@ -126,18 +118,26 @@ HW/CW Information | {{ $ins_name }}
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Homework Assignments</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">HM/CW Assignments</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">
                                             </button>
                                         </div>
                                         <div class="modal-body">
 
+
+                                            <a target="_blank" href="{{ route('homeworkPdf',$all_home_work->id) }}" class="btn btn-primary mt-4 pr-4 pl-4">Download Assignments</a>
+
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
+
+                            @endif
+                                @if (Auth::guard('admin')->user()->can('home_work_update'))
+
+
 
 
                             <button type="button" data-bs-toggle="modal"
@@ -150,7 +150,7 @@ HW/CW Information | {{ $ins_name }}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Evaluate Homework</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Evaluate HW/CW</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close">
                                         </button>
@@ -166,8 +166,8 @@ HW/CW Information | {{ $ins_name }}
 
 
                                             $all_student = DB::table('main_students')
-                                            ->where('class',$class_name )
-                                            ->where('section',$section_name)
+                                            ->where('student_house',$class_name )
+
                                             ->get();
 
 
@@ -268,9 +268,9 @@ HW/CW Information | {{ $ins_name }}
 
 
                                                         <div class="form-group col-md-6 col-sm-12">
-                                                            <label for="password">Class Name</label>
+                                                            <label for="password">Branch Name</label>
                                                             <select name="class_id" class="form-control">
-                                                                <option value="">Select Class</option>
+                                                                <option value="">Select Branch</option>
                                                                 @foreach ($class_details as $user_class_update)
                                                                 <option value="{{ $user_class_update->id }}"
                                                                     {{ $all_home_work->class == $user_class_update->id  ? 'selected' : '' }}>
@@ -281,31 +281,7 @@ HW/CW Information | {{ $ins_name }}
                                                         </div>
 
 
-                                                        <div class="form-group col-md-6 col-sm-12">
-                                                            <label for="password">Department Name</label>
-                                                            <select name="department_id" class="form-control">
-                                                                <option readonly value="0">--- Select Department ---
-                                                                </option>
-                                                                @foreach ($dp_details as $user_class_update)
-                                                                <option value="{{ $user_class_update->id }}"
-                                                                    {{ $all_home_work->department == $user_class_update->id  ? 'selected' : '' }}>
-                                                                    {{ $user_class_update->name }}</option>
 
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="form-group col-md-6 col-sm-12">
-                                                            <label for="password">Section Name</label>
-                                                            <select name="section_id" class="form-control">
-                                                                @foreach ($section_details as $user_class_update)
-                                                                <option value="{{ $user_class_update->id }}"
-                                                                    {{ $all_home_work->section == $user_class_update->id  ? 'selected' : '' }}>
-                                                                    {{ $user_class_update->name }}</option>
-
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
 
                                                         <div class="form-group col-md-6 col-sm-12">
                                                             <label for="password">Subject Name</label>
@@ -343,7 +319,7 @@ HW/CW Information | {{ $ins_name }}
                                                             <div class="form-group col-md-4 col-sm-12">
                                                                 <label for="name">Attached Doc</label>
                                                                 <input type="file" class="form-control" id="name"
-                                                                    name="doc" placeholder="Enter Practical Mark">
+                                                                    name="doc" accept=".pdf" placeholder="Enter Practical Mark">
                                                             </div>
 
 
@@ -435,9 +411,9 @@ HW/CW Information | {{ $ins_name }}
 
 
                                         <div class="form-group col-md-6 col-sm-12">
-                                            <label for="password">Class Name</label>
+                                            <label for="password">Branch Name</label>
                                             <select name="class_id" class="form-control">
-                                                <option value="">Select Class</option>
+                                                <option value="">Select Branch</option>
                                                 @foreach ($class_details as $user_class_update)
                                                 <option value="{{ $user_class_update->id }}">
                                                     {{ $user_class_update->name }}</option>
@@ -447,19 +423,7 @@ HW/CW Information | {{ $ins_name }}
                                         </div>
 
 
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label for="password">Department Name</label>
-                                            <select name="department_id" class="form-control">
 
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label for="password">Section Name</label>
-                                            <select name="section_id" class="form-control">
-
-                                            </select>
-                                        </div>
 
                                         <div class="form-group col-md-6 col-sm-12">
                                             <label for="password">Subject Name</label>
@@ -486,7 +450,7 @@ HW/CW Information | {{ $ins_name }}
 
                                         <div class="form-group col-md-4 col-sm-12">
                                             <label for="name">Attached Doc</label>
-                                            <input type="file" class="form-control" id="name" name="doc"
+                                            <input type="file" accept=".pdf" class="form-control" id="name" name="doc"
                                                 placeholder="Enter Practical Mark">
                                         </div>
 

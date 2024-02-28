@@ -269,6 +269,9 @@ Route::post('/userwisecertificateviewnew','Admin\PeopleController@userwisecer')-
 
 
     //homework
+    Route::get('homeworkPdf/{id}', 'HomeworkController@homeworkPdf')->name('homeworkPdf');
+
+
     Route::get('homework', 'HomeworkController@index')->name('admin.home_work');
     Route::post('homework/store', 'HomeworkController@store')->name('admin.home_work.store');
     Route::post('homework/update/','HomeworkController@update')->name('admin.home_work.update');

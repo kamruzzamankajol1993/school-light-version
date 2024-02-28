@@ -10,13 +10,15 @@ use App\Subject;
 use App\Student;
 use App\Result;
 use App\Exam;
+use Response;
+use App\StudentHouse;
 use App\Models\Homework;
 use Illuminate\Support\Facades\Auth;
 class HomeworkController extends Controller
 {
     public function index(){
 
-        $class_details = Srani::latest()->get();
+        $class_details = StudentHouse::latest()->get();
         $dp_details = Department::latest()->get();
         $section_details = Section::latest()->get();
         $student_details = Student::latest()->get();
@@ -48,7 +50,7 @@ $home_work_detail = Homework::latest()->get();
         $extension = $file->getClientOriginalName();
         $filename = $extension;
         $file->move('public/uploads/', $filename);
-        $user->doc =  'public/uploads/'.$filename;
+        $user->doc =  'uploads/'.$filename;
     }
     $user->save();
 
@@ -74,7 +76,7 @@ $home_work_detail = Homework::latest()->get();
         $extension = $file->getClientOriginalName();
         $filename = $extension;
         $file->move('public/uploads/', $filename);
-        $user->doc =  'public/uploads/'.$filename;
+        $user->doc =  'uploads/'.$filename;
     }
     $user->save();
 
@@ -92,5 +94,30 @@ $home_work_detail = Homework::latest()->get();
 
 
    return redirect()->route('admin.home_work')->with('error','Deleted successfully!');
+}
+
+
+
+public function homeworkPdf($id){
+
+
+    $get_file_data = Homework::where('id',$id)->value('doc');
+
+    $file_path = url('public/'.$get_file_data);
+                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+    $file= public_path('/'). $get_file_data;
+
+    $headers = array(
+              'Content-Type: application/pdf',
+            );
+
+    // return Response::download($file,$filename.'.pdf', $headers);
+
+    return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+    ]);
+
+
 }
 }
